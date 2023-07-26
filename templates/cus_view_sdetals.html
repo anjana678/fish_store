@@ -1,0 +1,81 @@
+{% include 'customer_header.html'%}
+<style>
+    h2,p{
+        font-family: ui-sans-serif;
+    }
+</style>
+<section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+        <!-- <ol class="carousel-indicators" id="hero-carousel-indicators"></ol> -->
+
+        <div class="carousel-inner" role="listbox">
+
+      
+
+          <!-- Slide 3 -->
+          <div class="carousel-item active" style="background-image: url(/static/assets/img/slide/slide-3.jpg);">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                {% for row in q%}
+                <h2 class="animate__animated animate__fadeInDown"><span></span>{{row.service}}</h2>
+                <div>
+
+            <p class="animate__animated animate__fadeInDown" >${{row.rate}}</p>
+            <p class="animate__animated animate__fadeInDown" >{{row.des}}</p> 
+            <p class="animate__animated animate__fadeInDown"><a class="btn btn-info" href="/customer_send_service_request/{{row.id}}/{{row.rate}}">send service request</a>
+            </p>
+                </div>
+                {%endfor%}
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+
+
+
+<!-- ======= Why Us Section ======= -->
+<section id="why-us" class="why-us">
+    <div class="container">
+      <!-- <div class="section-title">
+        <h2> <span>Services</span></h2>
+      </div>
+   -->
+      <div class="row">
+        {% for row in q%}
+  
+        <div class="col-lg-4">
+          <div class="box">
+            
+            <h4>{{row.service}}</h4>
+            <a class="btn btn-primary" href="cus_view_sdetals/{{row.id}}">view more</a>
+            <!-- <span>${{row.rate}}</span>
+            <p>{{row.des}}</p> -->
+          </div>
+        </div>
+        {%endfor%}
+      </div>
+  
+    </div>
+  </section><!-- End Why Us Section -->
+
+
+   
+
+{% include 'cfooter.html'%}

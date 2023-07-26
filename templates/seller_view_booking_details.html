@@ -1,0 +1,33 @@
+{% include 'sellerheader.html' %}
+
+
+       
+<h1>VIEW ORDERS DETAILS</h1>
+
+<table class="table" id="customers" style="width: 700px;" >
+    <tr>
+                <th>PRODUCT</th>
+                <th>IMAGE</th>
+                <th>QUANTITY</th>
+                <th>AMOUNT</th>
+               </tr>
+            {% for row in q %}
+            <tr>
+                <td>{{row.product.product}}</td>
+                <td><img src="/static/media/{{row.product.image}}" width="100" height="100" alt=""></td>
+                <td>{{row.qty}}</td>
+                <td>{{row.bamt}}</td>
+               
+                {% if row.booking.status == "delivered"%}
+                <td> <a class="btn btn-primary" href="/seller_view_feedback/{{row.product_id}}">view feedback</a></td>
+                <td> <a class="btn btn-primary" href="/seller_view_ratings/{{row.product_id}}">view ratings</a></td>
+
+                {%endif%}
+
+            </tr>
+            {%endfor%}
+        </table>
+   
+
+{% include 'footer.html'%}
+

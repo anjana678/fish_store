@@ -1,0 +1,34 @@
+{% include 'adminheader.html' %}
+
+<form action="" method="post">
+    {%csrf_token%}  
+<h1>VIEW ORDERS</h1>
+
+<table class="table" id="customers">
+    <tr>
+
+            <th>SELLER NAME</th>
+     
+        <th>CUSTOMER NAME</th>
+        <th>TOTAL</th>
+                <th>DATE</th>
+                <th>STATUS</th>
+               
+            {% for row in q %}
+            <tr>
+                <td>{{row.seller.firstname}} {{row.seller.lastname}}</td>
+
+                <td>{{row.customerr.fname}} {{row.customerr.lname}}</td>
+                <td>{{row.total}}</td>
+                <td>{{row.date}}</td>
+                <td>{{row.status}}</td>
+                <td> <a class="btn btn-primary" href="/admin_view_booking_details/{{row.id}}">order details</a></td>
+                
+
+            </tr>
+            {%endfor%}
+        </table>
+   </form>
+
+   {% include 'footer.html' %}
+

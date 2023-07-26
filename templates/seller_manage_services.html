@@ -1,0 +1,93 @@
+{% include 'sellerheader.html'%}
+<script src="
+https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+<script>
+    $(function() {
+        $("input[name='cat']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+       
+      
+     
+    });
+
+
+
+ 
+</script>
+<td><a class="btn btn-success" href="/seller_edit_service">ADD SERVICES</a></td>
+
+    <!-- <h1>Services</h1> -->
+    <form action="" method="post">
+        {% csrf_token %}
+        {% if up %}
+
+        <table class="table" style="width: 500px;">
+            <tr>
+                <th>Services</th>
+                <td><input type="text" name="cat" style="text-transform:capitalize;" id="" pattern="[A-Za-z]+$" class="form-control" value="{{up.service}}"></td>
+            </tr>
+            <tr>
+                <th>Rate</th>
+                <td><input type="number" min="1" name="det" id=""  class="form-control" value="{{up.rate}}"></td>
+            </tr>
+            <tr>
+                <th>Details</th>
+                <td><input type="text" name="des" style="text-transform:capitalize;" id="" pattern="[A-Za-z ]+$" class="form-control" value="{{up.des}}"></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2">
+           <input type="submit" name="add" value="update" class="btn btn-success">
+
+                </td>
+            </tr>
+         
+
+
+        </table>
+       
+        {%endif%}
+        
+        <h1>View Services</h1>
+        <form action="" method="post">
+            {%csrf_token%}
+        <table class="table" style="width: 500px;">
+            <tr>
+                <td><input type="text" name="s" id="" placeholder="search here" class="form-control"></td>
+                <td>
+                    <input type="submit" name="search" value="SEARCH" id="" class="btn btn-info">
+                </td>
+            </tr>
+        </table>
+        </form>
+
+
+
+
+        <table class="table" style="width: 900px;" id="customers">
+         
+            <tr>
+                <th>Slno</th>
+                <th>Services</th>
+                <th>Rate</th>
+                <th>Details</th>
+            </tr>
+
+            {% for row in qry1 %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{row.service}}</td>
+                <td>{{row.rate}}</td>
+                <td>{{row.des}}</td>
+                <td><a class="btn btn-success" href="/update_services/{{row.id}}">update</a></td>
+                <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger" href="/delete_services/{{row.id}}">delete</a></td>
+
+            </tr>
+
+            {%endfor%}
+        </table>
+
+    </form>
+    {% include 'footer.html'%}

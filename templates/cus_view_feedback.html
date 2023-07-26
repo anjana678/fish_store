@@ -1,0 +1,30 @@
+{% include 'customer_header.html'%}
+
+{% include 'tempheader.html'%}<br><br>
+  <h1 style="color:white">VIEW FEEDBACK</h1>
+{% include 'temp_footer.html'%}
+
+      
+<h1></h1>
+
+
+
+<table class="table" id="customers" >
+    <tr>
+          
+                <th>FEEDBACK</th>
+             
+                <th>DATE</th>
+                
+{% for row in cus %}
+            <tr>
+                <td>{{row.feedback}}</td>
+                <td>{{row.date}}</td>
+                
+              
+            </tr>
+{%endfor%}
+        </table>
+
+{% include 'cfooter.html'%}
+

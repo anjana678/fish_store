@@ -1,0 +1,29 @@
+{% include 'staffheader.html'%}
+
+
+       
+<h1>ASSIGN STAFF</h1>
+<form action="" method="post">
+{%csrf_token%}
+<table class="table" style="width: 500px;color:rgb(12, 8, 8);">
+    <tr>
+        <th>Staff</th>
+        <td>
+            <select name="cat" id="" class="form-control" required>
+                {% for row in qry1 %}
+                <option value="{{row.id}}">{{row.fn}} {{row.ln}}</option>
+                {%endfor%}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2"><input type="submit" class="btn btn-success" name="login" id="" value="ADD"></td>
+    </tr>
+    </table>
+</form>
+<br><br><br><br><br>    
+
+
+
+{% include 'footer.html'%}
+

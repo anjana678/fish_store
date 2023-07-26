@@ -1,0 +1,47 @@
+{% include 'sellerheader.html' %}
+
+
+
+<form action="" method="post">
+    {%csrf_token%}  
+<h1>VIEW SERVICE BOOKINGS</h1>
+
+<table class="table" id="customers" >
+    <tr>
+                <th>CUSTOMER NAME</th>
+                <th>ADDRESS</th>
+                <th>SERVICE</th>
+                <th>AMOUNT</th>
+                <th>DATE</th>
+                <th>STATUS</th>
+               </tr>
+            {% for row in q %}
+            <tr>
+                <td>{{row.customer.fname}} {{row.customer.lname}}</td>
+                <td>{{row.customer.address}}</td>
+
+                <td>{{row.service.service}}</td>
+                <td>{{row.amount}}</td>
+                <td>{{row.date}}</td>
+                <td>{{row.status}}</td>
+
+                {% if row.status == "pending" %}
+                <td><a class="btn btn-success" href="/seller_accept_req/{{row.id}}/{{row.service_id}}/{{row.customer.email}}">Accept</a></td>
+                <td><a class="btn btn-danger" href="/seller_reject_req/{{row.id}}/{{row.service_id}}/{{row.customer.email}}">Reject</a></td>
+                {% elif row.status == "paid"%}
+                <td> <a class="btn btn-info" href="/seller_assigned_staff/{{row.id}}/{{row.customer.email}}"> assigned staff</a></td>
+                {% elif row.status == "finished"%}
+                <td> <a class="btn btn-primary" href="/seller_view_service_feedback/{{row.service_id}}"> feedback</a></td>
+                <td> <a class="btn btn-primary" href="/seller_view_service_rating/{{row.service_id}}"> rating</a></td>
+
+ 
+              
+                {%endif%}
+
+            </tr>
+            {%endfor%}
+        </table>
+   </form>
+
+   {% include 'footer.html' %}
+

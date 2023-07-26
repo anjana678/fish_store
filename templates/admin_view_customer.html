@@ -1,0 +1,49 @@
+{% include 'adminheader.html'%}
+
+
+      
+<h1>VIEW CUSTOMER</h1>
+<form action="" method="post">
+    {%csrf_token%}
+<table class="table" style="width: 500px;">
+    <tr>
+        <td><input type="text" name="sname" id="" placeholder="search here" class="form-control"></td>
+        <td>
+            <input type="submit" name="search" value="SEARCH" id="" class="btn btn-info">
+        </td>
+    </tr>
+</table>
+</form>
+
+<table class="table" id="customers" >
+    <tr>
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+          
+                <th>PLACE</th>
+             
+                <th>PHONE</th>
+                
+                <th>EMAIL</th>
+{% for row in cus %}
+            <tr>
+                <td>{{row.fname}}</td>
+                <td>{{row.lname}}</td>
+                <td>{{row.place}}</td>
+                <td>{{row.phone}}</td>
+                <td>{{row.email}}</td>
+                <td><a class="btn btn-info" href="/admin_view_bk/{{row.id}}">view orders</a></td>
+
+                {%if row.login.usertype == "customer" %}
+                <td><a class="btn btn-danger" href="/accept_customer/{{row.login_id}}/{{row.email}}">block</a></td>
+                {% elif row.login.usertype == "reject" %}
+                <td><a class="btn btn-success" href="/reject_customer/{{row.login_id}}/{{row.email}}">unblock</a></td>
+
+                {% endif %}
+              
+            </tr>
+{%endfor%}
+        </table>
+
+{% include 'footer.html'%}
+

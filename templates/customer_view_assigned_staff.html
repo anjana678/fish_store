@@ -1,0 +1,31 @@
+{% include 'customer_header.html'%}
+{% include 'tempheader.html'%}<br><br><br><br>
+
+<h1>VIEW ASSIGNED STAFF</h1>
+{% include 'temp_footer.html'%}
+
+        <table class="table" id="customers" >
+            <tr>
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+                <th>PLACE</th>
+                <th>PHONE</th>
+                <th>EMAIL</th>
+                <th>DATE</th>
+               
+            {% for row in q %}
+            <tr>
+                <td>{{row.staff.fn}}</td>
+                <td>{{row.staff.ln}}</td>
+                <td>{{row.staff.place}}</td>
+                <td>{{row.staff.phone}}</td>
+                <td>{{row.staff.email}}</td>
+                <td>{{row.date}}</td>
+
+            </tr>
+            {%endfor%}
+        </table>
+    
+
+{% include 'cfooter.html'%}
+

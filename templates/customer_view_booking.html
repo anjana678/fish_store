@@ -1,0 +1,44 @@
+{% include 'customer_header.html' %}
+{% include 'tempheader.html' %}
+<h1>MY ORDERS</h1>
+
+{% include 'temp_footer.html' %}
+
+<form action="" method="post">
+    {%csrf_token%}  
+
+        <table class="table" id="customers" >
+            <tr>
+                <th>CUSTOMER NAME</th>
+                <th>TOTAL</th>
+                <th>DATE</th>
+                <th>STATUS</th>
+               
+            {% for row in q %}
+            <tr>
+                <td>{{row.customerr.fname}} {{row.customerr.lname}}</td>
+                <td>{{row.total}}</td>
+                <td>{{row.date}}</td>
+                <td>{{row.status}}</td>
+                <td> <a class="btn btn-primary" href="/customer_view_booking_details/{{row.id}}">order details</a></td>
+                {%if row.status == "paid"%}
+                <td><a class="btn btn-primary" href="/bill_generate/{{row.id}}">Generate Bill</a></td>
+
+                {% elif row.status == "delivered"%}
+
+                <td><a class="btn btn-primary" href="/bill_generate/{{row.id}}">Generate Bill</a></td>
+                {%endif%}
+                        {% if row.status == "assigned staff"%}
+                <td> <a class="btn btn-info" href="/customer_view_assigned_staff/{{row.id}}">view assigned staff</a></td>
+                <td><a class="btn btn-primary" href="/bill_generate/{{row.id}}">Generate Bill</a></td>
+
+                {%endif%}
+
+
+            </tr>
+            {%endfor%}
+        </table>
+   </form>
+
+{% include 'cfooter.html'%}
+

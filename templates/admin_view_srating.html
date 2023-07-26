@@ -1,0 +1,65 @@
+{% include 'adminheader.html' %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .checked {
+      color: #db8330 ;
+    }
+    </style>
+<form action="" method="post">
+    {%csrf_token%}  
+<h1>VIEW RATINGS</h1>
+<table class="table" id="customers" >
+    <tr>
+        <th>CUSTOMER NAME</th>
+
+                <th>RATINGS</th>
+             
+                <th>REVIEW</th>
+                <th>DATE</th>
+                <!-- <th></th> -->
+                
+{% for row in cus %}
+            <tr>
+                <td>{{row.customer.fname}} {{row.customer.lname}}</td>
+                {% if row.rate == '1' %}
+                <td>
+                    <span class="fa fa-star checked"></span>
+                </td>
+                {% elif row.rate == '2' %}
+                <td>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                </td>
+                {% elif row.rate == '3' %}
+                <td>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                </td>
+                {% elif row.rate == '4' %}
+                <td>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                </td>
+                {% elif row.rate == '5' %}
+                <td>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                </td>
+                {% endif %}
+                <td>{{row.reviews}}</td>
+                <td>{{row.date}}
+                
+             
+            </tr>
+{%endfor%}
+        </table>
+
+   {% include 'footer.html' %}
+

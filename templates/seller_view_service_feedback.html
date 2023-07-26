@@ -1,0 +1,29 @@
+{% include 'sellerheader.html' %}
+
+
+
+<form action="" method="post">
+    {%csrf_token%}  
+<h1>VIEW FEEDBACK</h1>
+<table class="table" id="customers" >
+    <tr>
+        <th>CUSTOMER NAME</th>
+
+                <th>FEEDBACK</th>
+             
+                <th>DATE</th>
+                
+{% for row in cus %}
+            <tr>
+                <td>{{row.customer.fname}} {{row.customer.lname}}</td>
+
+                <td>{{row.feedback}}</td>
+                <td>{{row.date}}</td>
+                
+              
+            </tr>
+{%endfor%}
+        </table>
+
+   {% include 'footer.html' %}
+
